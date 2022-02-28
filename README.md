@@ -213,387 +213,404 @@ Write a C++ program to implement singly linked list
      temp = create_node(value); 
     while (s->next != NULL) 
     { 
- s = s->next; 
- } 
- temp->next = NULL; 
- s->next = temp; 
- cout<<temp->info<<" is inserted at last"<<endl; 
- } 
- else 
- { 
- cout<<"Positon out of range...!!!"<<endl; 
- } 
- } 
-} 
-void single_llist::delete_begin() 
-{ 
- if (start == NULL){} 
- else 
- { 
- struct node *s, *ptr; 
- s = start; 
- start = s->next; 
- cout<<s->info<<" deleted from first"<<endl; 
- free(s); 
- } 
-} 
-void single_llist::delete_last() 
-{ 
- int i, counter = 0; 
- struct node *s, *ptr; 
- if (start == NULL){} 
- else 
- { 
- s = start; 
- while (s != NULL) 
- { 
- s = s->next; 
- counter++; 
- } 
- s = start; 
- if (counter == 1) 
- { 
- start = s->next; 
- cout<<s->info<<" deleted from last"<<endl; 
- free(s); 
- } 
- else 
- { 
- for (i = 1;i < counter;i++) 
- { 
- ptr = s; 
- s = s->next; 
- } 
- ptr->next = s->next; 
- cout<<s->info<<" deleted from last"<<endl; 
- free(s); 
- } 
- } 
-} 
-void single_llist::delete_pos() 
-{ 
- int pos, i, counter = 0, loc = 1; 
- struct node *s, *ptr; 
- s = start; 
- while (s != NULL) 
- { 
- s = s->next; 
- counter++; 
- } 
- if (counter == 0){} 
- else 
- { 
- if (counter == 1) 
- { 
- cout<<"Enter the postion [ SAY "<<loc<<" ] : "; 
- cin>>pos; 
- s = start; 
- if (pos == 1) 
- { 
- start = s->next; 
- cout<<s->info<<" deleted from first"<<endl; 
- free(s); 
- } 
- else 
- cout<<"Position out of range...!!!"<<endl; 
- } 
- else 
- { 
- cout<<"Enter the postion from "<<loc<<" to "<<counter<<" : "; 
- cin>>pos; 
- s = start; 
- if (pos == 1) 
- { 
- start = s->next; 
- cout<<s->info<<" deleted from first"<<endl; 
- free(s); 
- } 
- else if (pos > 1 && pos <= counter) 
- { 
- for (i = 1;i < pos;i++) 
- { 
- ptr = s; 
- s = s->next; 
- } 
- ptr->next = s->next; 
- if(pos == counter) 
- {cout<<s->info<<" deleted from last"<<endl; 
- free(s);} 
- else 
- {cout<<s->info<<" deleted from postion "<<pos<<endl; 
- free(s);} 
- } 
- else 
- cout<<"Position out of range...!!!"<<endl; 
- } 
- } 
-} 
-void single_llist::update_begin() 
-{ 
- int value, pos=1, i,counter = 0; 
- struct node *s, *ptr; 
- s = start; 
- while (s != NULL) 
- { 
- s = s->next; 
- counter++; 
- } 
- if (counter == 0){} 
- else if (pos == 1) 
- { 
- cout<<"Enter the new node : "; 
- cin>>value; 
- start->info = value; 
- cout<<"Node updated at first position : "<<pos<<" = "<<start->info<<endl; 
- } 
-} 
-void single_llist::update_last() 
-{ 
- int value, pos, i,counter = 0; 
- struct node *s, *ptr; 
- s = start; 
- while (s != NULL) 
- { 
- s = s->next; 
- counter++; 
- } 
- s=start; 
- if (counter == 0){} 
- else 
- { 
- cout<<"Enter the new node : "; 
- cin>>value; 
- for (i = 1; i < counter ; i++) 
- { 
- s = s->next; 
- } 
- s->info = value; 
- cout<<"Node updated at last position : "<<counter<<" = "<<s->info<<endl; 
- } 
-} 
-void single_llist::update_pos() 
-{ 
- int value, pos, i,counter = 0, loc = 1; 
- struct node *s, *ptr; 
- s = start; 
- while (s != NULL) 
- { 
- s = s->next; 
- counter++; 
- } 
- if (counter == 0){} 
- else 
- { 
- if (counter == 1) 
- { 
- cout<<"Enter the postion [ SAY "<<loc<<" ] : "; 
- cin>>pos; 
- s = start; 
- if (pos == 1) 
- { 
- cout<<"Enter the new node : "; 
- cin>>value; 
- start->info = value; 
- cout<<"Node updated at position : "<<pos<<" = "<<start->info<<endl; 
- } 
- else 
- cout<<"Position out of range...!!!"<<endl; 
- } 
- else 
- { 
- cout<<"Enter the postion from "<<loc<<" to "<<counter<<" : "; 
- cin>>pos; 
- s = start; 
- if (pos == 1) 
- { 
- cout<<"Enter the new node : "; 
- cin>>value; 
- start->info = value; 
- cout<<"Node updated at position : "<<pos<<" = "<<start->info<<endl; 
- } 
- else if (pos > 1 && pos <= counter) 
- { 
- cout<<"Enter the new node : "; 
- cin>>value; 
- for (i = 1; i < pos ; i++) 
- { 
- s = s->next; 
- } 
- s->info = value; 
- cout<<"Node updated at position : "<<pos<<" = "<<s->info<<endl; 
- } 
- else 
- cout<<"Position out of range...!!!"<<endl; 
- } 
- } 
-} 
-void single_llist::sort() 
-{ 
- struct node *ptr, *s; 
- int value; 
- if (start == NULL){} 
- else 
- { 
- ptr = start; 
- while (ptr != NULL) 
- { 
- for (s = ptr->next;s !=NULL;s = s->next) 
- { 
- if (ptr->info > s->info) 
- { 
- value = ptr->info; 
- ptr->info = s->info; 
- s->info = value; 
- } 
- } 
- ptr = ptr->next; 
- } 
- } 
-} 
-void single_llist::reverse() 
-{ 
- struct node *ptr, *s; 
- int value; 
- if (start == NULL){} 
- else 
- { 
- ptr = start; 
- while (ptr != NULL) 
- { 
- for (s = ptr->next;s !=NULL;s = s->next) 
- { 
- if (ptr->info < s->info) 
- { 
- value = ptr->info; 
- ptr->info = s->info; 
- s->info = value; 
- } 
- } 
- ptr = ptr->next; 
- } 
- } 
-} 
-void single_llist::search() 
-{ 
- int value, loc = 0, pos = 0, counter = 0; 
- struct node *s; 
- s = start; 
- while (s != NULL) 
- { 
- s = s->next; 
- counter++; 
- } 
- if (start == NULL){} 
- else 
- { 
- cout<<"Enter the value to be searched : "; 
- cin>>value; 
- struct node *s; 
- s = start; 
- while (s != NULL) 
- { 
- pos++; 
- if (s->info == value) 
- { 
- loc++; 
- if(loc == 1) 
- cout<<"Element "<<value<<" is found at position "<<pos; 
- else if(loc <= counter) 
- cout<<" , "<<pos; 
- } 
- s = s->next; 
- } 
- cout<<endl; 
- if (loc == 0) 
- cout<<"Element "<<value<<" not found in the list"<<endl; 
- } 
-} 
-void single_llist::display() 
-{ 
-   struct node *temp; 
-   if (start == NULL) 
-   cout<<"Linked list is empty...!!!"<<endl; 
-   else 
-  { 
-   cout<<"Linked list contains : "; 
-   temp = start; 
-    while (temp != NULL) 
-  { 
+    s = s->next; 
+     } 
+    temp->next = NULL; 
+     s->next = temp; 
+      cout<<temp->info<<" is inserted at last"<<endl; 
+     } 
+     else 
+     { 
+     cout<<"Positon out of range...!!!"<<endl; 
+     } 
+     } 
+    } 
+    void single_llist::delete_begin() 
+    { 
+    if (start == NULL){} 
+    else 
+    { 
+    struct node *s, *ptr; 
+    s = start; 
+    start = s->next; 
+    cout<<s->info<<" deleted from first"<<endl; 
+    free(s); 
+    } 
+    } 
+    void single_llist::delete_last() 
+    { 
+     int i, counter = 0; 
+    struct node *s, *ptr; 
+    if (start == NULL){} 
+    else 
+    { 
+    s = start; 
+    while (s != NULL) 
+    { 
+      counter++; 
+    } 
+    s = start; 
+    if (counter == 1) 
+    { 
+    start = s->next; 
+    cout<<s->info<<" deleted from last"<<endl; 
+     free(s); 
+     } 
+      else 
+    { 
+    for (i = 1;i < counter;i++) 
+      { 
+     ptr = s; 
+    s = s->next; 
+    } 
+    ptr->next = s->next; 
+    cout<<s->info<<" deleted from last"<<endl; 
+    free(s); 
+     } 
+    } 
+    } 
+    void single_llist::delete_pos() 
+    { 
+     int pos, i, counter = 0, loc = 1; 
+    struct node *s, *ptr; 
+    s = start; 
+    while (s != NULL) 
+    { 
+    s = s->next; 
+    counter++; 
+    } 
+     if (counter == 0){} 
+    else 
+     { 
+     if (counter == 1) 
+     { 
+    cout<<"Enter the postion [ SAY "<<loc<<" ] : "; 
+    cin>>pos; 
+    s = start; 
+    if (pos == 1) 
+    { 
+    start = s->next; 
+    cout<<s->info<<" deleted from first"<<endl; 
+    free(s); 
+    } 
+    else 
+    cout<<"Position out of range...!!!"<<endl; 
+    } 
+    else 
+    { 
+    cout<<"Enter the postion from "<<loc<<" to "<<counter<<" : "; 
+    cin>>pos; 
+    s = start; 
+    if (pos == 1) 
+    { 
+    start = s->next; 
+    cout<<s->info<<" deleted from first"<<endl; 
+    free(s); 
+    } 
+    else if (pos > 1 && pos <= counter) 
+    { 
+    for (i = 1;i < pos;i++) 
+     { 
+    ptr = s; 
+    s = s->next; 
+    } 
+    ptr->next = s->next; 
+    if(pos == counter) 
+    {
+    cout<<s->info<<" deleted from last"<<endl; 
+    free(s);} 
+    else 
+    {
+    cout<<s->info<<" deleted from postion "<<pos<<endl; 
+    free(s);} 
+    } 
+    else 
+    cout<<"Position out of range...!!!"<<endl; 
+    } 
+    } 
+    } 
+    void single_llist::update_begin() 
+    { 
+    int value, pos=1, i,counter = 0; 
+    struct node *s, *ptr; 
+    s = start; 
+    while (s != NULL) 
+    { 
+    s = s->next; 
+    counter++; 
+    } 
+    if (counter == 0){} 
+    else if (pos == 1) 
+    { 
+    cout<<"Enter the new node : "; 
+    cin>>value; 
+    start->info = value; 
+    cout<<"Node updated at first position : "<<pos<<" = "<<start->info<<endl; 
+    } 
+    } 
+    void single_llist::update_last() 
+    { 
+    int value, pos, i,counter = 0; 
+    struct node *s, *ptr; 
+    s = start; 
+    while (s != NULL) 
+    { 
+    s = s->next; 
+    counter++; 
+    } 
+    s=start; 
+    if (counter == 0){} 
+    else 
+    { 
+    cout<<"Enter the new node : "; 
+    cin>>value; 
+    for (i = 1; i < counter ; i++) 
+    { 
+    s = s->next; 
+    } 
+    s->info = value; 
+    cout<<"Node updated at last position : "<<counter<<" = "<<s->info<<endl; 
+    } 
+    } 
+    void single_llist::update_pos() 
+    { 
+    int value, pos, i,counter = 0, loc = 1; 
+    struct node *s, *ptr; 
+    s = start; 
+    while (s != NULL) 
+    { 
+    s = s->next; 
+    counter++; 
+    } 
+    if (counter == 0){} 
+    else 
+    { 
+    if (counter == 1) 
+    { 
+    cout<<"Enter the postion [ SAY "<<loc<<" ] : "; 
+    cin>>pos; 
+    s = start; 
+    if (pos == 1) 
+    { 
+    cout<<"Enter the new node : "; 
+    cin>>value; 
+    start->info = value; 
+    cout<<"Node updated at position : "<<pos<<" = "<<start->info<<endl; 
+    } 
+    else 
+    cout<<"Position out of range...!!!"<<endl; 
+    } 
+    else 
+    { 
+    cout<<"Enter the postion from "<<loc<<" to "<<counter<<" : "; 
+    cin>>pos; 
+    s = start; 
+    if (pos == 1) 
+    { 
+    cout<<"Enter the new node : "; 
+    cin>>value; 
+    start->info = value; 
+    cout<<"Node updated at position : "<<pos<<" = "<<start->info<<endl; 
+    } 
+    else if (pos > 1 && pos <= counter) 
+     { 
+    cout<<"Enter the new node : "; 
+    cin>>value; 
+    for (i = 1; i < pos ; i++) 
+    { 
+    s = s->next; 
+    } 
+    s->info = value; 
+    cout<<"Node updated at position : "<<pos<<" = "<<s->info<<endl; 
+    } 
+    else 
+    cout<<"Position out of range...!!!"<<endl; 
+    } 
+    } 
+    } 
+    void single_llist::sort() 
+    { 
+    struct node *ptr, *s; 
+    int value; 
+    if (start == NULL){} 
+    else 
+    { 
+    ptr = start; 
+    while (ptr != NULL) 
+    { 
+    for (s = ptr->next;s !=NULL;s = s->next) 
+    { 
+    if (ptr->info > s->info) 
+     { 
+     value = ptr->info; 
+    ptr->info = s->info; 
+     s->info = value; 
+     } 
+     } 
+     ptr = ptr->next; 
+     } 
+     } 
+    } 
+    void single_llist::reverse() 
+    { 
+    struct node *ptr, *s; 
+    int value; 
+    if (start == NULL){} 
+    else 
+    { 
+     ptr = start; 
+    while (ptr != NULL) 
+    { 
+    for (s = ptr->next;s !=NULL;s = s->next) 
+     { 
+    if (ptr->info < s->info) 
+    { 
+    value = ptr->info; 
+    ptr->info = s->info; 
+    s->info = value; 
+    } 
+    } 
+    ptr = ptr->next; 
+    } 
+     } 
+      } 
+    void single_llist::search() 
+    { 
+    int value, loc = 0, pos = 0, counter = 0; 
+    struct node *s; 
+    s = start; 
+    while (s != NULL) 
+    { 
+    s = s->next; 
+    counter++; 
+    } 
+    if (start == NULL){} 
+    else 
+    { 
+    cout<<"Enter the value to be searched : "; 
+    cin>>value; 
+    struct node *s; 
+    s = start; 
+    while (s != NULL) 
+     { 
+    pos++; 
+    if (s->info == value) 
+     { 
+    loc++; 
+    if(loc == 1) 
+    cout<<"Element "<<value<<" is found at position "<<pos; 
+    else if(loc <= counter) 
+     cout<<" , "<<pos; 
+     } 
+    s = s->next; 
+    } 
+    cout<<endl; 
+    if (loc == 0) 
+    cout<<"Element "<<value<<" not found in the list"<<endl; 
+    }   
+    } 
+    void single_llist::display()  
+    { 
+     struct node *temp; 
+     if (start == NULL) 
+    cout<<"Linked list is empty...!!!"<<endl; 
+     else 
+    { 
+    cout<<"Linked list contains : "; 
+    temp = start; 
+     while (temp != NULL) 
+    {  
     cout<<temp->info<<" "; 
     temp = temp->next; 
-  } 
-   cout<<endl; 
- } 
-}
+    } 
+    cout<<endl; 
+    } 
+    }
   
-  3)         
-#include<iostream>
-using namespace std;
-struct Node{
-int value;
-struct Node *next;
-};
-struct Node* head = NULL;
-struct Node* sHead = NULL;
-struct Node* temp = NULL;
-void insert(int new_data){
-struct Node* new_node = new Node();
-new_node->value = new_data;
-new_node->next = head;
-head = new_node;
-}
-int n;
-int ele;
-int splitIndex;
-int main(){
-int i;
-cout<<"Enter number of elements you want in the list\t";
-cin>>n;
-cout<<"Enter elements :" <<endl;
-for(i=0;i<n;i++){
-cin>>ele;
-insert(ele);
-}
-cout<<"\nList of elements : "<<endl;
-Node *t;
-t = head;
-while(t != NULL){
-cout<<t->value<<"\t";
-t = t->next;
-}
-cout<<"\n\nEnter the position you want the list to split ";
-cin>>splitIndex;
-while(splitIndex < 0 || splitIndex > n-1){
-cout<<"Invalid position. Try again."<<endl;
-cin>>splitIndex;
+    3)         
+    #include<iostream>
+    using namespace std;
+    struct Node
+    {
+    int value;
+    struct Node *next;
+    };
+    struct Node* head = NULL;
+    struct Node* sHead = NULL;
+    struct Node* temp = NULL;
+    void insert(int new_data)
+    {
+    struct Node* new_node = new Node();
+    new_node->value = new_data;
+    new_node->next = head;
+    head = new_node;  
+    }
+    int n;
+    int ele;
+    int splitIndex;
+    int main()
+    {
+    int i;
+    cout<<"Enter number of elements you want in the list\t";
+    cin>>n;
+    cout<<"Enter elements :" <<endl;
+    for(i=0;i<n;i++)  
+    {
+    cin>>ele;
+    insert(ele);
+    }
+    cout<<"\nList of elements : "<<endl;
+    Node *t;
+    t = head;
+    while(t != NULL)
+    {
+    cout<<t->value<<"\t";
+    t = t->next;
+    }
+    cout<<"\n\nEnter the position you want the list to split ";
+    cin>>splitIndex;
+    while(splitIndex < 0 || splitIndex > n-1)
+    {
+    cout<<"Invalid position. Try again."<<endl;
+    cin>>splitIndex;
+    }
+    temp = head;
+    for(i=0;i<=splitIndex;i++)
+    {
+    if(i==splitIndex-1)
+    {
+    Node *tN;
+    tN = temp->next;
+    sHead = tN;
+    temp->next = NULL;
+    break;
+    }
+    temp = temp->next;
 }
 temp = head;
-for(i=0;i<=splitIndex;i++){
-if(i==splitIndex-1){
-Node *tN;
-tN = temp->next;
-sHead = tN;
-temp->next = NULL;
-break;
-}
-temp = temp->next;
-}
-temp = head;
-if(temp == NULL){
+if(temp == NULL)
+{
 cout<<"\nFirst list is empty"<<endl;
-}else{
+}
+else
+{
 cout<<"\n\nFirst list element "<<endl;
-while(temp != NULL){
+while(temp != NULL)
+{
 cout<<temp->value<<"\t";
 temp = temp->next;
 }
 }
 temp = sHead;
-if(temp == NULL){
+if(temp == NULL)
+{
 cout<<"\nSecond list is empty"<<endl;
-}else{
+}
+else
+{
 cout<<"\n\nSecond list elements "<<endl;
-while(temp != NULL){
+while(temp != NULL)
+{
 cout<<temp->value<<"\t";
 temp = temp->next;
 }
@@ -601,5 +618,126 @@ temp = temp->next;
 return 0;
 }
 
+  
+  4)
+  
+#include<iostream>
+#include<limits.h>
+using namespace std;
+void Insert(int ary[],int hFn, int Size){
+    int element,pos,n=0;
+cout<<"Enter key element to insert\n";
+cin>>element;
+pos = element%hFn; 
+while(ary[pos]!= INT_MIN) {  
+if(ary[pos]== INT_MAX)
+            break;
+pos = (pos+1)%hFn;
+n++;
+if(n==Size)
+            break;     
+}
+if(n==Size)
+        cout<<"Hash table was full of elements\nNo Place to insert this element\n\n";
+else
+        ary[pos] = element;    
+}
+void display(int ary[],int Size){
+int i;
+ 
+cout<<"Index\tValue\n";
+for(i=0;i<Size;i++)
+        cout<<i<<"\t"<<ary[i]<<"\n";
+}
+int main(){
+int Size,hFn,i,choice;
+cout<<"Enter size of hash table\n";
+cin>>Size;
+ hFn=Size;
+int ary[Size];
+for(i=0;i<Size;i++)
+        ary[i]=INT_MIN; 
+do{
+cout<<"Enter your choice\n";
+cout<<" 1-> Insert\n 2-> Display\n 0-> Exit\n";
+cin>>choice;
+switch(choice){
+case 1:
+Insert(ary,hFn,Size);
+break;
+case 2:
+display(ary,Size);
+break;
+default:
+cout<<"Enter correct choice\n";
+break;
+}
+}while(choice);
+return 0;
+}
+  
+  5)
+#include <iostream>
+using namespace std;
+void MaxHeapify (int a[], int i, int n)
+{
+	int j, temp;
+	temp = a[i];
+	j = 2*i;
+	while (j <= n)
+	{
+		if (j < n && a[j+1] > a[j])
+		j = j+1;
+		if (temp > a[j])
+			break;
+		else if (temp <= a[j])
+		{
+			a[j/2] = a[j];
+			j = 2*j;
+		}
+	}
+	a[j/2] = temp;
+	return;
+}
+void HeapSort(int a[], int n)
+{
+	int i, temp;
+	for (i = n; i >= 2; i--)
+	{
+		temp = a[i];
+		a[i] = a[1];
+		a[1] = temp;
+		MaxHeapify(a, 1, i - 1);
+	}
+}
+void Build_MaxHeap(int a[], int n)
+{
+	int i;
+	for(i = n/2; i >= 1; i--)
+		MaxHeapify(a, i, n);
+}
+int main()
+{
+int n, i,arr[100];
+	cout<<"\nEnter the number of data element to be sorted: ";
+	cin>>n;
+	n++;
+	for(i=1;i<n;i++)
+	 {
+	 cout<<"Enter element"<<i<<":";
+	 cin>>arr[i];
+	 }
+	Build_MaxHeap(arr, n-1);
+	HeapSort(arr, n-1);
+	cout<<"\nSorted Data ";
+	for (i = 1; i < n; i++)
+		cout<<" "<<arr[i];
+	return 0;
+}
+                      6)
+                      
+
+  
+  
   
  
