@@ -167,52 +167,52 @@ Write a C++ program to implement singly linked list
     cout<<temp->info<<" is inserted at last"<<endl; 
     } 
     } 
-void single_llist::insert_pos() 
-{ 
- int value, pos, counter = 0, loc = 1; 
- struct node *temp, *s, *ptr; 
- s = start; 
- while (s != NULL) 
- { 
- s = s->next; 
- counter++; 
- } 
- if (counter == 0){} 
- else 
- { 
- cout<<"Enter the postion from "<<loc<<" to "<<counter+1<<" : "; 
- cin>>pos; 
- s = start; 
- if(pos == 1) 
- { 
- cout<<"Enter the value to be inserted : "; 
- cin>>value; 
- temp = create_node(value); 
- start = temp; 
- start->next = s; 
- cout<<temp->info<<" is inserted at first"<<endl; 
- } 
- else if (pos > 1 && pos <= counter) 
- { 
- cout<<"Enter the value to be inserted : "; 
- cin>>value; 
- temp = create_node(value); 
- for (int i = 1; i < pos; i++) 
- { 
- ptr = s; 
- s = s->next; 
- } 
- ptr->next = temp; 
- temp->next = s; 
- cout<<temp->info<<" is inserted at position "<<pos<<endl; 
- } 
- else if (pos == counter+1) 
- { 
- cout<<"Enter the value to be inserted : "; 
- cin>>value; 
- temp = create_node(value); 
- while (s->next != NULL) 
- { 
+      void single_llist::insert_pos() 
+     { 
+    int value, pos, counter = 0, loc = 1; 
+    struct node *temp, *s, *ptr; 
+    s = start; 
+    while (s != NULL) 
+    { 
+    s = s->next; 
+    counter++; 
+    } 
+    if (counter == 0){} 
+    else 
+    { 
+    cout<<"Enter the postion from "<<loc<<" to "<<counter+1<<" : "; 
+    cin>>pos; 
+    s = start; 
+    if(pos == 1) 
+    { 
+    cout<<"Enter the value to be inserted : "; 
+    cin>>value; 
+    temp = create_node(value); 
+    start = temp; 
+    start->next = s; 
+    cout<<temp->info<<" is inserted at first"<<endl; 
+     } 
+     else if (pos > 1 && pos <= counter) 
+     { 
+    cout<<"Enter the value to be inserted : "; 
+    cin>>value; 
+    temp = create_node(value); 
+    for (int i = 1; i < pos; i++) 
+    { 
+    ptr = s; 
+     s = s->next; 
+     } 
+     ptr->next = temp; 
+     temp->next = s; 
+    cout<<temp->info<<" is inserted at position "<<pos<<endl; 
+      } 
+      else if (pos == counter+1) 
+      { 
+    cout<<"Enter the value to be inserted : "; 
+     cin>>value; 
+     temp = create_node(value); 
+    while (s->next != NULL) 
+    { 
  s = s->next; 
  } 
  temp->next = NULL; 
