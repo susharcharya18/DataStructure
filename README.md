@@ -586,52 +586,52 @@ Write a C++ program to implement singly linked list
     break;
     }
     temp = temp->next;
-}
-temp = head;
-if(temp == NULL)
-{
-cout<<"\nFirst list is empty"<<endl;
-}
-else
-{
-cout<<"\n\nFirst list element "<<endl;
-while(temp != NULL)
-{
-cout<<temp->value<<"\t";
-temp = temp->next;
-}
-}
-temp = sHead;
-if(temp == NULL)
-{
-cout<<"\nSecond list is empty"<<endl;
-}
-else
-{
-cout<<"\n\nSecond list elements "<<endl;
-while(temp != NULL)
-{
-cout<<temp->value<<"\t";
-temp = temp->next;
-}
-}
-return 0;
-}
+	}
+	temp = head;
+	if(temp == NULL)
+	{
+	cout<<"\nFirst list is empty"<<endl;
+	}
+	else
+	{
+	cout<<"\n\nFirst list element "<<endl;
+	while(temp != NULL)
+	{
+	cout<<temp->value<<"\t";
+	temp = temp->next;
+	}
+	}
+	temp = sHead;
+	if(temp == NULL)
+	{
+	cout<<"\nSecond list is empty"<<endl;
+	}
+	else
+	{
+	cout<<"\n\nSecond list elements "<<endl;
+	while(temp != NULL)
+	{
+	cout<<temp->value<<"\t";
+	temp = temp->next;
+	}
+	}
+	return 0;
+	}
 
   
-  4)
+    4)
   
-#include<iostream>
-#include<limits.h>
-using namespace std;
-void Insert(int ary[],int hFn, int Size){
+   	#include<iostream>
+	#include<limits.h>
+	using namespace std;
+	void Insert(int ary[],int hFn, int Size){
     int element,pos,n=0;
-cout<<"Enter key element to insert\n";
-cin>>element;
-pos = element%hFn; 
-while(ary[pos]!= INT_MIN) {  
-if(ary[pos]== INT_MAX)
-            break;
+    cout<<"Enter key element to insert\n"
+    cin>>element;
+	pos = element%hFn; 
+	while(ary[pos]!= INT_MIN) 
+	{  
+if(ary[pos]== INT_MAX    break;
 pos = (pos+1)%hFn;
 n++;
 if(n==Size)
@@ -734,8 +734,67 @@ int n, i,arr[100];
 		cout<<" "<<arr[i];
 	return 0;
 }
-                      6)
-                      
+   6)
+#include<iostream>
+#include<limits.h>
+using namespace std;
+void Insert(int ary[],int hFn, int Size)
+{
+    int element,pos,n=0;
+cout<<"Enter key element to insert\n";
+cin>>element;
+pos = element%hFn; 
+while(ary[pos]!= INT_MIN) 
+{  
+if(ary[pos]== INT_MAX)
+            break;
+pos = (pos+1)%hFn;
+n++;
+if(n==Size)
+            break;     
+}
+if(n==Size)
+        cout<<"Hash table was full of elements\nNo Place to insert this element\n\n";
+else
+        ary[pos] = element;    
+}
+void display(int ary[],int Size)
+{
+int i;
+ 
+cout<<"Index\tValue\n";
+for(i=0;i<Size;i++)
+        cout<<i<<"\t"<<ary[i]<<"\n";
+}
+int main()
+{
+int Size,hFn,i,choice;
+cout<<"Enter size of hash table\n";
+cin>>Size;
+ hFn=Size;
+int ary[Size];
+for(i=0;i<Size;i++)
+        ary[i]=INT_MIN; 
+do{
+cout<<"Enter your choice\n";
+cout<<" 1-> Insert\n 2-> Display\n 0-> Exit\n";
+cin>>choice;
+switch(choice){
+case 1:
+Insert(ary,hFn,Size);
+break;
+case 2:
+display(ary,Size);
+break;
+default:
+cout<<"Enter correct choice\n";
+break;
+}
+}while(choice);
+return 0;
+}
+		  
+                     
 
   
   
