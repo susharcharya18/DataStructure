@@ -619,7 +619,7 @@ Write a C++ program to implement singly linked list
 	}
 
   
-    4)
+    4)KEY PROGRAM
   
    	#include<iostream>
 	#include<limits.h>
@@ -658,29 +658,31 @@ Write a C++ program to implement singly linked list
         ary[i]=INT_MIN; 
 	do
 	{
-cout<<"Enter your choice\n";
-cout<<" 1-> Insert\n 2-> Display\n 0-> Exit\n";
-cin>>choice;
-switch(choice){
-case 1:
-Insert(ary,hFn,Size);
-break;
-case 2:
-display(ary,Size);
-break;
-default:
-cout<<"Enter correct choice\n";
-break;
-}
-}while(choice);
-return 0;
-}
-  
-  5)
-    #include <iostream>
-using namespace std;
-void MaxHeapify (int a[], int i, int n)
-{
+	cout<<"Enter your choice\n";
+	cout<<" 1-> Insert\n 2-> Display\n 0-> Exit\n";
+	cin>>choice;
+	switch(choice){
+	case 1:
+	Insert(ary,hFn,Size);
+	break;
+	case 2:
+	display(ary,Size);
+	break;
+	default:
+	cout<<"Enter correct choice\n";
+	break;
+	}
+	}
+	while(choice);
+	return 0;
+	}
+
+	5)SORTING
+	
+	#include <iostream>
+	using namespace std;
+	void MaxHeapify (int a[], int i, int n)
+	{
 	int j, temp;
 	temp = a[i];
 	j = 2*i;
@@ -698,9 +700,9 @@ void MaxHeapify (int a[], int i, int n)
 	}
 	a[j/2] = temp;
 	return;
-}
-void HeapSort(int a[], int n)
-{
+	}
+	void HeapSort(int a[], int n)
+	{
 	int i, temp;
 	for (i = n; i >= 2; i--)
 	{
@@ -709,16 +711,16 @@ void HeapSort(int a[], int n)
 		a[1] = temp;
 		MaxHeapify(a, 1, i - 1);
 	}
-}
-void Build_MaxHeap(int a[], int n)
-{
+	}
+	void Build_MaxHeap(int a[], int n)
+	{
 	int i;
 	for(i = n/2; i >= 1; i--)
 		MaxHeapify(a, i, n);
-}
-int main()
-{
-int n, i,arr[100];
+	}
+	int main()
+	{
+	int n, i,arr[100];
 	cout<<"\nEnter the number of data element to be sorted: ";
 	cin>>n;
 	n++;
@@ -733,68 +735,153 @@ int n, i,arr[100];
 	for (i = 1; i < n; i++)
 		cout<<" "<<arr[i];
 	return 0;
-}
-   6)
-#include<iostream>
-#include<limits.h>
-using namespace std;
-void Insert(int ary[],int hFn, int Size)
-{
+	}
+   	
+	6)
+	
+	#include<iostream>
+	#include<limits.h>
+	using namespace std;
+	void Insert(int ary[],int hFn, int Size)
+	{
     int element,pos,n=0;
-cout<<"Enter key element to insert\n";
-cin>>element;
-pos = element%hFn; 
-while(ary[pos]!= INT_MIN) 
-{  
-if(ary[pos]== INT_MAX)
+	cout<<"Enter key element to insert\n";
+	cin>>element;
+	pos = element%hFn; 
+	while(ary[pos]!= INT_MIN) 
+	{  
+	if(ary[pos]== INT_MAX)
             break;
-pos = (pos+1)%hFn;
-n++;
-if(n==Size)
+	pos = (pos+1)%hFn;
+	n++;
+	if(n==Size)
             break;     
-}
-if(n==Size)
+	}
+	if(n==Size)
         cout<<"Hash table was full of elements\nNo Place to insert this element\n\n";
-else
+	else
         ary[pos] = element;    
-}
-void display(int ary[],int Size)
-{
-int i;
+	}
+	void display(int ary[],int Size)
+	{
+	int i;
  
-cout<<"Index\tValue\n";
-for(i=0;i<Size;i++)
+	cout<<"Index\tValue\n";
+	for(i=0;i<Size;i++)
         cout<<i<<"\t"<<ary[i]<<"\n";
-}
-int main()
-{
-int Size,hFn,i,choice;
-cout<<"Enter size of hash table\n";
-cin>>Size;
- hFn=Size;
-int ary[Size];
-for(i=0;i<Size;i++)
+	}
+	int main()
+	{
+	int Size,hFn,i,choice;
+	cout<<"Enter size of hash table\n";
+	cin>>Size;
+ 	hFn=Size;
+	int ary[Size];
+	for(i=0;i<Size;i++)
         ary[i]=INT_MIN; 
-do{
-cout<<"Enter your choice\n";
-cout<<" 1-> Insert\n 2-> Display\n 0-> Exit\n";
-cin>>choice;
-switch(choice){
-case 1:
-Insert(ary,hFn,Size);
-break;
-case 2:
-display(ary,Size);
-break;
-default:
-cout<<"Enter correct choice\n";
-break;
-}
-}while(choice);
-return 0;
-}
-		  
-                     
+	do
+	{
+	cout<<"Enter your choice\n";
+	cout<<" 1-> Insert\n 2-> Display\n 0-> Exit\n";
+	cin>>choice;
+	switch(choice){
+	case 1:
+	Insert(ary,hFn,Size);
+	break;
+	case 2:
+	display(ary,Size);
+	break;	
+	default:
+	cout<<"Enter correct choice\n";
+	break;
+	}
+	}
+	while(choice);
+	return 0;
+	}
+		 
+		 4)
+                     #include <iostream>
+	using namespace std;
+	void MaxHeapify (int a[], int i, int n)
+	{
+	int j, temp;
+	temp = a[i];
+	j = 2*i;
+	while (j <= n)
+	{
+		if (j < n && a[j+1] > a[j])
+		j = j+1;
+		if (temp > a[j])
+			break;
+		else if (temp <= a[j])
+		{
+			a[j/2] = a[j];
+			j = 2*j;
+		}
+	}
+	a[j/2] = temp;
+	return;
+	}
+	void MinHeapify (int a[], int i, int n)
+	{
+	int j, temp;
+	temp = a[i];
+	j = 2*i;
+	while (j <= n)
+	{
+		if (j < n && a[j+1] < a[j])
+		j = j+1;
+		if (temp < a[j])
+			break;
+		else if (temp >= a[j])
+		{
+			a[j/2] = a[j];
+			j = 2*j;
+		}
+	}
+	a[j/2] = temp;
+	return;
+	}
+	void Build_MaxHeap(int a[], int n)
+	{
+	int i;
+	for(i = n/2; i >= 1; i--)
+		MaxHeapify(a, i, n);
+	}
+	void Build_MinHeap(int a[], int n)
+	{
+	int i;
+	for(i = n/2; i >= 1; i--)
+		MinHeapify(a, i, n);
+	}
+	int main()
+	{
+	int n, i,arr[100];
+	cout<<"\nEnter the number of data element to be sorted: ";
+	cin>>n;
+	n++;
+	for(i=1;i<n;i++)
+	 {
+	 cout<<"Enter element"<<i<<":";
+	 cin>>arr[i];
+	 }
+	Build_MaxHeap(arr, n-1);
+	{
+	cout<<"\nMax heap Sorted Data ";
+	for (i = 1; i < n; i++)
+		cout<<" "<<arr[i];
+	}
+	Build_MinHeap(arr, n-1);
+	{
+	cout<<"\nMin heap Sorted Data ";
+	for (i = 1; i < n; i++)
+		cout<<" "<<arr[i];
+	}
+	return 0;
+	}
+ 
+
 
   
   
