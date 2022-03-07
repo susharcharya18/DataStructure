@@ -1,5 +1,5 @@
 # DataStructure
-Write a C++ program to implement singly linked list
+1)Write a C++ program to implement singly linked list
 
                                                  
                                                            #include<iostream> 
@@ -799,6 +799,8 @@ Write a C++ program to implement singly linked list
 	while(choice);
 	return 0;
 	}
+	OUTPUT:
+	
 		 
   	 4)
          
