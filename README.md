@@ -1086,108 +1086,108 @@
  	if (tree->left != NULL) 
  	{ 
  	insert(tree->left, newnode); 
- } 
- else 
- { 
- tree->left = newnode; 
- (tree->left)->left = NULL; 
- (tree->left)->right = NULL; 
- cout<<"Node Added To Left"<<endl; 
- return; 
- } 
- } 
- else 
- { 
- if (tree->right != NULL) 
- { 
- insert(tree->right, newnode); 
- } 
- else 
- { 
- tree->right = newnode; 
- (tree->right)->left = NULL; 
- (tree->right)->right = NULL; 
- cout<<"Node Added To Right"<<endl; 
- return; 
- } 
- } 
-} 
+ 	} 
+ 	else 
+ 	{ 
+ 	tree->left = newnode; 
+ 	(tree->left)->left = NULL; 
+ 	(tree->left)->right = NULL; 
+ 	cout<<"Node Added To Left"<<endl; 
+ 	return; 
+ 	} 
+ 	} 
+ 	else 
+ 	{ 
+	 if (tree->right != NULL) 
+ 	{ 
+ 	insert(tree->right, newnode); 
+ 	} 
+ 	else 
+ 	{ 
+ 	tree->right = newnode; 
+ 	(tree->right)->left = NULL; 
+	(tree->right)->right = NULL; 
+ 	cout<<"Node Added To Right"<<endl; 
+ 	return; 
+ 	} 
+ 	} 
+	} 
 
-void BST::del(int item) 
-{ 
- node *parent, *location; 
- if (root == NULL) 
- { 
- cout<<"Tree empty"<<endl; 
- return; 
- } 
- find(item, &parent, &location); 
- if (location == NULL) 
- { 
- cout<<"Item not present in tree"<<endl; 
- return; 
- } 
- if (location->left == NULL && location->right == NULL) 
- case_a(parent, location); 
- if (location->left != NULL && location->right == NULL) 
- case_b(parent, location); 
- if (location->left == NULL && location->right != NULL) 
- case_b(parent, location); 
- if (location->left != NULL && location->right != NULL) 
- case_c(parent, location); 
- free(location); 
-} 
+	void BST::del(int item) 
+	{ 
+	 node *parent, *location; 
+ 	if (root == NULL) 
+ 	{ 
+ 	cout<<"Tree empty"<<endl; 
+ 	return; 
+ 	} 
+ 	find(item, &parent, &location); 
+ 	if (location == NULL) 
+	 { 
+ 	cout<<"Item not present in tree"<<endl; 
+ 	return; 
+ 	} 
+ 	if (location->left == NULL && location->right == NULL) 
+ 	case_a(parent, location); 
+ 	if (location->left != NULL && location->right == NULL) 
+ 	case_b(parent, location); 
+ 	if (location->left == NULL && location->right != NULL) 
+ 	case_b(parent, location); 
+ 	if (location->left != NULL && location->right != NULL) 
+ 	case_c(parent, location); 
+ 	free(location); 
+	} 
  
 
-void BST::case_a(node *par, node *loc ) 
-{ 
- if (par == NULL) 
- { 
- root = NULL; 
- } 
- else 
- { 
- if (loc == par->left) 
- par->left = NULL; 
- else 
- par->right = NULL; 
- } 
-} 
+	void BST::case_a(node *par, node *loc ) 
+	{ 
+ 	if (par == NULL) 
+	 { 
+ 	root = NULL; 
+ 	} 
+ 	else 
+ 	{ 
+ 	if (loc == par->left) 
+ 	par->left = NULL; 
+ 	else 
+ 	par->right = NULL; 
+ 	} 
+	} 
  
 
-void BST::case_b(node *par, node *loc) 
-{ 
- node *child; 
- if (loc->left != NULL) 
- child = loc->left; 
- else 
- child = loc->right; 
- if (par == NULL) 
- { 
- root = child; 
- } 
- else 
- { 
- if (loc == par->left) 
- par->left = child; 
- else 
- par->right = child; 
- } 
-} 
+	void BST::case_b(node *par, node *loc) 
+	{ 
+ 	node *child; 
+ 	if (loc->left != NULL) 
+ 	child = loc->left; 
+ 	else 
+ 	child = loc->right; 
+ 	if (par == NULL) 
+ 	{ 
+ 	root = child; 
+ 	} 
+ 	else 
+ 	{ 
+	 if (loc == par->left) 
+	 par->left = child; 
+	 else 
+	 par->right = child; 
+	 } 
+	} 
  
 
-void BST::case_c(node *par, node *loc) 
-{ 
- node *ptr, *ptrsave, *suc, *parsuc; 
- ptrsave = loc; 
- ptr = loc->right; 
- while (ptr->left != NULL) 
- { 
- ptrsave = ptr; 
- ptr = ptr->left; 
- } 
- suc = ptr; 
- parsuc = ptrsave; 
+	void BST::case_c(node *par, node *loc) 
+	{ 
+	 node *ptr, *ptrsave, *suc, *parsuc; 
+	 ptrsave = loc; 
+	 ptr = loc->right; 
+	 while (ptr->left != NULL) 
+	 { 
+	 ptrsave = ptr; 
+	 ptr = ptr->left; 
+	 } 
+	 suc = ptr; 
+	 parsuc = ptrsave; 
  if (suc->left == NULL && suc->right == NULL) 
  case_a(parsuc, suc); 
  else 
