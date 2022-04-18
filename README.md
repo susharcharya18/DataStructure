@@ -1,8 +1,7 @@
 # DataStructure
-1)Write a C++ program to implement singly linked list
+1)Write a C++ program to implement singly linked list 
 
-                                                 
-                                                           #include<iostream> 
+    #include<iostream> 
     #include<cstdlib> 
     using namespace std; 
     struct node 
@@ -527,7 +526,7 @@
     } 
     }
   
-    3)         
+    2) Write a C++ program to split the linked list into two halves such that the element ‘e’ should be the first element of second list.    
     #include<iostream>
     using namespace std;
     struct Node
@@ -618,16 +617,66 @@
 	return 0;
 	}
 
+  	3)	#include <bits/stdc++.h>
+	using namespace std;
+	struct Node	
+	{
+	int data;
+	struct Node* left, *right;
+	Node(int data)
+	{
+	this->data = data;
+	left = right = NULL;
+	}
+	};
+	bool isBSTUtil(struct Node* root, Node *&prev)
+	{
+	if (root)
+	{
+	if (!isBSTUtil(root->left, prev))
+	return false;
+	if (prev != NULL && root->data <= prev->data)
+	return false;
+	prev = root;
+	return isBSTUtil(root->right, prev);
+	}
+	return true;
+	}
+	bool isBST(Node *root)
+	{
+	Node *prev = NULL;
+	return isBSTUtil(root, prev);
+	}
+	int main()
+	{
+	struct Node *root = new Node(7);
+	root->left = new Node(5);
+	root->right = new Node(8);
+	root->left->left = new Node(3);
+	root->left->right = new Node(6);
+	if (isBST(root))
+	cout << "Is BST";
+	else
+	cout << "Not a BST";
+	return 0;
+	}
+    OUTPUT:
+![image](https://user-images.githubusercontent.com/97939356/163764729-43893335-0333-477f-9f2f-a301f91f69bf.png)
+
   
-    4)KEY PROGRAM
+  
+  
+  
+  	 4)Write a program to store k keys into an array of size n at the location compute using a hash function, loc=key%n, where k<=n and  key takes values from [1 to m], m>n. Handle the collision using Linear Probing technique.
   
    	#include<iostream>
 	#include<limits.h>
 	using namespace std;
-	void Insert(int ary[],int hFn, int Size){
-    int element,pos,n=0;
-    cout<<"Enter key element to insert\n"
-    cin>>element;
+	void Insert(int ary[],int hFn, int Size)
+	{
+    	int element,pos,n=0;
+    	cout<<"Enter key element to insert\n"
+   	 cin>>element;
 	pos = element%hFn; 
 	while(ary[pos]!= INT_MIN) 
 	{  
@@ -737,7 +786,7 @@
 	return 0;
 	}
    	
-	6)
+	6)Write a program to store k keys into an array of size n at the location compute using a hash function, loc=key%n, where k<=n and  key takes values from [1 to m], m>n. Handle the collision using Linear Probing technique
 	
 	#include<iostream>
 	#include<limits.h>
@@ -800,10 +849,12 @@
 	return 0;
 	}
 	OUTPUT:
-	
+![image](https://user-images.githubusercontent.com/97939356/163765464-46589c7a-b2b8-4ea7-a28c-2b627f31614d.png)
+![image](https://user-images.githubusercontent.com/97939356/163765547-05cfaa4d-9048-4d3e-ab90-4b0001fea655.png)
+
+
 		 
-  	 4)
-         
+  	 4)Write C++ program for implementing the Heap Sort technique
 	 #include <iostream>
 	using namespace std;
 	void MaxHeapify (int a[], int i, int n)
@@ -934,9 +985,11 @@
 	cout << "Not a BST";
 	return 0;
 	}
-	
-		7)
-		# include <iostream> 
+	output:
+![image](https://user-images.githubusercontent.com/97939356/163765108-313947b4-c0f0-4e0b-8cc2-8b99f3a1ae37.png)
+
+	7)
+	# include <iostream> 
 	# include <cstdlib> 
 	using namespace std; 
 	struct node 
@@ -1272,7 +1325,7 @@
 	 } 
 	}
                        
-		       8)
+    8)
 	#include<iostream>
 	using namespace std;
 	struct node
@@ -1772,9 +1825,62 @@
                 }
                 cout<<endl;
 
-    }while(y!=1);
+    }
+    while(y!=1);
     return 1;
 	}
+	output:
+![image](https://user-images.githubusercontent.com/97939356/163766016-1c0569cf-9ba8-4c4a-a4c4-eb68ed6464ae.png)
+![image](https://user-images.githubusercontent.com/97939356/163766069-5403f863-5c6e-4cd6-a152-8bf006f06525.png)
+![image](https://user-images.githubusercontent.com/97939356/163766141-08a208f4-ac9d-4510-9289-172c4592ece0.png)
+	
+#include<iostream>
+    using namespace std;
+    
+    class Subset_Sum
+    {
+        public:
+        void subsetsum_Backtracking(int Set[] , int pos, int sum, int tmpsum, int size, bool & found)
+        {
+            if (sum == tmpsum)
+                found = true;
+            for (int i = pos; i < size; i++)
+            {
+             if (tmpsum + Set[i] <= sum)
+               {
+                  tmpsum += Set[i];   
+                  subsetsum_Backtracking(Set, i + 1, sum, tmpsum, size, found);
+                  tmpsum -= Set[i];
+                }
+            }
+        }
+    };
+    int main()
+    {
+        int i, n, sum,tmpsum;
+        Subset_Sum S;
+        cout << "Enter the number of elements in the set" << endl;
+        cin >> n;
+        int a[n];
+        cout << "Enter the values" << endl;
+        for(i=0;i<n;i++)
+          cin>>a[i];
+        cout << "Enter the value of sum" << endl;
+        cin >> sum;
+        bool f = false;
+        S.subsetsum_Backtracking(a, 0, sum, 0, n, f);
+		if (f)
+        {
+		 cout << "subset with the given sum is found" << endl;
+        }
+        else
+		{
+        	 cout << "no sum of subset found" << endl;   
+		}  
+        return 0;
+    }
+    
+
 
   
   
