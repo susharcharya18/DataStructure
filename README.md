@@ -525,7 +525,16 @@
     cout<<endl; 
     } 
     }
-  
+    OUT[UT:
+   
+![image](https://user-images.githubusercontent.com/97939356/163947245-d3e78ec6-fbaa-4270-a63b-97c2592cf930.png)
+![image](https://user-images.githubusercontent.com/97939356/163947297-33030c0e-736a-42df-96ee-c588c9f6ab3e.png)
+![image](https://user-images.githubusercontent.com/97939356/163947356-8466269d-cf42-4995-953f-c472c9d2f7e5.png)
+![image](https://user-images.githubusercontent.com/97939356/163947471-912d43f7-5b50-4b89-9b11-1139ce1e1754.png)
+![image](https://user-images.githubusercontent.com/97939356/163947544-198895f5-dd43-4a31-a417-1aeaa7fddb94.png)
+![image](https://user-images.githubusercontent.com/97939356/163947630-abca8c0e-7155-416b-94d7-c3919f75ed90.png)
+![image](https://user-images.githubusercontent.com/97939356/163947796-3bd57a04-e819-48fe-b8ad-f615fe0c45b4.png)
+
     2) Write a C++ program to split the linked list into two halves such that the element ‘e’ should be the first element of second list.    
     #include<iostream>
     using namespace std;
@@ -661,13 +670,9 @@
 	return 0;
 	}
     OUTPUT:
-![image](https://user-images.githubusercontent.com/97939356/163764729-43893335-0333-477f-9f2f-a301f91f69bf.png)
-
-  
-  
-  
-  
-  	 4)Write a program to store k keys into an array of size n at the location compute using a hash function, loc=key%n, where k<=n and  key takes values from [1 to m], m>n. Handle the collision using Linear Probing technique.
+   ![image](https://user-images.githubusercontent.com/97939356/163764729-43893335-0333-477f-9f2f-a301f91f69bf.png)
+   
+    4)Write a program to store k keys into an array of size n at the location compute using a hash function, loc=key%n, where k<=n and  key takes values from [1 to m], m>n. Handle the collision using Linear Probing technique.
   
    	#include<iostream>
 	#include<limits.h>
@@ -1324,6 +1329,11 @@
 	 display(ptr->left, level+1); 
 	 } 
 	}
+	OUTPUT:
+![image](https://user-images.githubusercontent.com/97939356/163948892-8bfe2934-2f73-4368-aefe-aaea66cee5ae.png)
+![image](https://user-images.githubusercontent.com/97939356/163948992-eb2b9b31-f32d-48e3-89f6-3b23e0582a36.png)
+![image](https://user-images.githubusercontent.com/97939356/163949076-f8e9a0b4-be55-4007-997f-b5562e9f0436.png)
+
                        
     8)
 	#include<iostream>
