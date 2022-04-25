@@ -940,7 +940,7 @@
 	return 0;
 	}
  
-	6)
+	6)bst
 	#include <bits/stdc++.h>
 	using namespace std;
 	struct Node
@@ -993,7 +993,7 @@
 	output:
 ![image](https://user-images.githubusercontent.com/97939356/163765108-313947b4-c0f0-4e0b-8cc2-8b99f3a1ae37.png)
 
-	7)
+	7)Binary search tree
 	# include <iostream> 
 	# include <cstdlib> 
 	using namespace std; 
@@ -1335,7 +1335,7 @@
 ![image](https://user-images.githubusercontent.com/97939356/163949076-f8e9a0b4-be55-4007-997f-b5562e9f0436.png)
 
                        
-    8)
+    8)rb tree
 	#include<iostream>
 	using namespace std;
 	struct node
@@ -1844,7 +1844,8 @@
 ![image](https://user-images.githubusercontent.com/97939356/163766069-5403f863-5c6e-4cd6-a152-8bf006f06525.png)
 ![image](https://user-images.githubusercontent.com/97939356/163766141-08a208f4-ac9d-4510-9289-172c4592ece0.png)
 	
-#include<iostream>
+	7)sum of subset
+	#include<iostream>
     using namespace std;
     
     class Subset_Sum
@@ -1889,7 +1890,595 @@
 		}  
         return 0;
     }
-    
+ 	 8)NQUEEN
+		#include<iostream>
+		using namespace std;
+		int grid[100][100];
+		//print the solution
+		void print(int n) {
+		    for (int i = 0;i <= n-1; i++) 
+			{
+		        for (int j = 0;j <= n-1; j++) 
+				{
+		           
+		                cout <<grid[i][j]<< " ";
+		           
+		        }
+		        cout<<endl;
+		    }
+		    cout<<endl;
+		    cout<<endl;
+		}
+		//function for check the position is safe or not
+		//row is indicates the queen no. and col represents the possible positions
+		bool isSafe(int col, int row, int n) 
+		{
+		  //check for same column
+		    for (int i = 0; i < row; i++) 
+			{
+		        if (grid[i][col]) 
+				{
+		            return false;
+		        }
+		    }
+		    //check for upper left diagonal
+		    for (int i = row,j = col;i >= 0 && j >= 0; i--,j--) 
+			{
+		        if (grid[i][j]) {
+		            return false;
+		        }
+		    }
+		    //check for upper right diagonal
+		    for (int i = row, j = col; i >= 0 && j < n; j++, i--) 
+			{
+		        if (grid[i][j]) 
+				{
+		            return false;
+		        }
+		    }
+		    return true;
+		}
+		//function to find the position for each queen
+		//row is indicates the queen no. and col represents the possible positions
+		bool solve (int n, int row) 
+		{
+		    if (n == row) 
+			{
+		        print(n);
+		        return true;
+		    }
+		    //variable res is use for possible backtracking
+		    bool res = false;
+		    for (int i = 0;i <=n-1;i++) 
+			{
+		        if (isSafe(i, row, n)) 
+				{
+		            grid[row][i] = 1;
+		            //recursive call solve(n, row+1) for next queen (row+1)
+		            res = solve(n, row+1) || res;//if res ==false then backtracking will occur
+		            //by assigning the grid[row][i] = 0
+		           
+		            grid[row][i] = 0;
+		        }
+		    }
+		    return res;
+		}
+		int main()
+		{
+		  ios_base::sync_with_stdio(false);
+		    cin.tie(NULL);
+		        int n;
+		        cout<<"Enter the number of queen"<<endl;
+		        cin >> n;
+		        for(int i = 0;i < n;i++)
+		            for(int j = 0;j < n;j++) 
+					{
+		                grid[i][j] = 0;
+		            }
+		        bool res=solve(n,0);
+		        if(res == false) 
+				{
+		            cout << -1 << endl; //if there is no possible solution
+		        } else
+				{
+		            cout << endl;
+		        }
+		  return 0;
+		}
+	OUTPUT:
+![image](https://user-images.githubusercontent.com/97939356/165031831-756411f3-28c7-4b08-bd8d-3d0a8ee45eaa.png)
+
+		9)MERGE SORT
+			#include <iostream>
+			#include<conio.h>
+			using namespace std;
+			void Merge(int *a, int low, int high, int mid)
+			{
+			int i, j, k, temp[high-low+1];
+			i = low;
+			k = 0;
+			j = mid + 1;
+			while (i <= mid && j <= high)
+			{
+				if (a[i] < a[j])
+				{
+					temp[k] = a[i];
+					k++;
+					i++;
+				}
+				else
+				{
+					temp[k] = a[j];
+					k++;
+					j++;
+				}
+			}
+			while (i <= mid)
+			{
+				temp[k] = a[i];
+				k++;
+				i++;
+			}
+			while (j <= high)
+			{
+				temp[k] = a[j];
+				k++;
+				j++;
+			}
+			for (i = low; i <= high; i++)
+			{
+				a[i] = temp[i-low];
+			}
+			 }
+			 void MergeSort(int *a, int low, int high)
+			 {
+			int mid;
+			if (low < high)
+			{
+				mid=(low+high)/2;
+					MergeSort(a, low, mid);
+				              MergeSort(a, mid+1, high);
+					Merge(a, low, high, mid);
+			}
+			}
+			int main()
+			 {
+			int n, i;
+			cout<<"\nEnter the number of data element to be sorted: ";
+			cin>>n;
+			
+			int arr[n];
+			for(i = 0; i < n; i++)
+			{
+				cout<<"Enter element "<<i+1<<": ";
+				cin>>arr[i];
+			}
+			MergeSort(arr, 0, n-1);
+			cout<<"\nSorted Data ";
+			for (i = 0; i < n; i++)
+			    cout<<"->"<<arr[i];
+			getch();
+			 }		
+output:
+![image](https://user-images.githubusercontent.com/97939356/165032511-51c1e41b-b81e-4f8f-b70d-0e8560600a7f.png)
+	
+	9)Doubly linked list
+	#include<iostream>
+			#include<cstdio>
+			#include<cstdlib>
+			/*
+			 * Node Declaration
+			 */
+			using namespace std;
+			struct node
+			{
+			    int info;
+			    struct node *next;
+			    struct node *prev;
+			}*start;
+			 
+			/*
+			 Class Declaration 
+			 */
+			class double_llist
+			{
+			    public:
+			        void create_list(int value);
+			        void add_begin(int value);
+			        void add_after(int value, int position);
+			        void delete_element(int value);
+			        void display_dlist();
+			        double_llist()
+			        {
+			            start = NULL;  
+			        }
+			};
+			 
+			/*
+			 * Main: Conatins Menu
+			 */
+			int main()
+			{
+			    int choice, element, position;
+			    double_llist dl;
+			    while (1)
+			    {
+			        cout<<endl<<"----------------------------"<<endl;
+			        cout<<endl<<"Operations on Doubly linked list"<<endl;
+			        cout<<endl<<"----------------------------"<<endl;         
+			        cout<<"1.Create Node"<<endl;
+			        cout<<"2.Add at begining"<<endl;
+			        cout<<"3.Add after position"<<endl;
+			        cout<<"4.Delete"<<endl;
+			        cout<<"5.Display"<<endl;
+			        cout<<"6.Quit"<<endl;
+			        cout<<"Enter your choice : ";
+			        cin>>choice;
+			        switch ( choice )
+			        {
+			        case 1:
+			            cout<<"Enter the element: ";
+			            cin>>element;
+			            dl.create_list(element);
+			            cout<<endl;
+			            break;
+			        case 2:
+			            cout<<"Enter the element: ";
+			            cin>>element;
+			            dl.add_begin(element);
+			            cout<<endl;
+			            break;
+			        case 3:
+			            cout<<"Enter the element: ";
+			            cin>>element;
+			            cout<<"Insert Element after postion: ";
+			            cin>>position;
+			            dl.add_after(element, position);
+			            cout<<endl;
+			            break;
+			        case 4:
+			            if (start == NULL)
+			            {                      
+			                cout<<"List empty,nothing to delete"<<endl;   
+			                break;
+			            }
+			            cout<<"Enter the element for deletion: ";
+			            cin>>element;
+			            dl.delete_element(element);
+			            cout<<endl;
+			            break;
+			        case 5:
+			            dl.display_dlist();
+			            cout<<endl;
+			            break;
+			        case 6:
+			            exit(1);
+			        default:
+			            cout<<"Wrong choice"<<endl;
+			        }
+			    }
+			    return 0;
+			}
+			 
+			/*
+			 * Create Double Link List
+			 */
+			void double_llist::create_list(int value)
+			{
+			    struct node *s, *temp;
+			    temp = new(struct node); 
+			    temp->info = value;
+			    temp->next = NULL;
+			    if (start == NULL)
+			    {
+			        temp->prev = NULL;
+			        start = temp;
+			    }
+			    else
+			    {
+			        s = start;
+			        while (s->next != NULL)
+			            s = s->next;
+			        s->next = temp;
+			        temp->prev = s;
+			    }
+			}
+			 
+			/*
+			 * Insertion at the beginning
+			 */
+			void double_llist::add_begin(int value)
+			{
+			    if (start == NULL)
+			    {
+			        cout<<"First Create the list."<<endl;
+			        return;
+			    }
+			    struct node *temp;
+			    temp = new(struct node);
+			    temp->prev = NULL;
+			    temp->info = value;
+			    temp->next = start;
+			    start->prev = temp;
+			    start = temp;
+			    cout<<"Element Inserted"<<endl;
+			}
+			 
+			/*
+			 * Insertion of element at a particular position
+			 */
+			void double_llist::add_after(int value, int pos)
+			{
+			    if (start == NULL)
+			    {
+			        cout<<"First Create the list."<<endl;
+			        return;
+			    }
+			    struct node *tmp, *q;
+			    int i;
+			    q = start;
+			    for (i = 0;i < pos - 1;i++)
+			    {
+			        q = q->next;
+			        if (q == NULL)
+			        {
+			            cout<<"There are less than ";
+			            cout<<pos<<" elements."<<endl;
+			            return;
+			        }
+			    }
+			    tmp = new(struct node);
+			    tmp->info = value;
+			    if (q->next == NULL)
+			    {
+			        q->next = tmp;
+			        tmp->next = NULL;
+			        tmp->prev = q;      
+			    }
+			    else
+			    {
+			        tmp->next = q->next;
+			        tmp->next->prev = tmp;
+			        q->next = tmp;
+			        tmp->prev = q;
+			    }
+			    cout<<"Element Inserted"<<endl;
+			}
+			 
+			/*
+			 * Deletion of element from the list
+			 */
+			void double_llist::delete_element(int value)
+			{
+			    struct node *tmp, *q;
+			     /*first element deletion*/
+			    if (start->info == value)
+			    {
+			        tmp = start;
+			        start = start->next;  
+			        start->prev = NULL;
+			        cout<<"Element Deleted"<<endl;
+			        free(tmp);
+			        return;
+			    }
+			    q = start;
+			    while (q->next->next != NULL)
+			    {   
+			        /*Element deleted in between*/
+			        if (q->next->info == value)  
+			        {
+			            tmp = q->next;
+			            q->next = tmp->next;
+			            tmp->next->prev = q;
+			            cout<<"Element Deleted"<<endl;
+			            free(tmp);
+			            return;
+			        }
+			        q = q->next;
+			    }
+			     /*last element deleted*/
+			    if (q->next->info == value)    
+			    { 	
+			        tmp = q->next;
+			        free(tmp);
+			        q->next = NULL;
+			        cout<<"Element Deleted"<<endl;
+			        return;
+			    }
+			    cout<<"Element "<<value<<" not found"<<endl;
+			}
+			 
+			/*
+			 * Display elements of Doubly Link List
+			 */
+			void double_llist::display_dlist()
+			{
+			    struct node *q;
+			    if (start == NULL)
+			    {
+			        cout<<"List empty,nothing to display"<<endl;
+			        return;
+			    }
+			    q = start;
+			    cout<<"The Doubly Link List is :"<<endl;
+			    while (q != NULL)
+			    {
+			        cout<<q->info<<" <-> ";
+			        q = q->next;
+			    }
+			    cout<<"NULL"<<endl;
+			}
+			OUTPUT:
+![image](https://user-images.githubusercontent.com/97939356/165039789-090974eb-a5f8-490a-a410-5afa49ffe420.png)
+![image](https://user-images.githubusercontent.com/97939356/165039853-fec3ec0b-ae54-4f05-9c98-2386a9a81f83.png)
+![image](https://user-images.githubusercontent.com/97939356/165039919-81b4c362-70bf-4fa4-ae69-c808d0df34e3.png)
+
+
+			
+	10)sum
+	 program 7: Write a C++ program to find subset of a given sets.
+    #include <iostream>
+
+    #include<stack>
+    using namespace std;
+    int set[]={4,6,3,7,5,8,1};
+    int numberOfElements=7,sum=11;
+    class Subset
+    {
+	public:
+		stack<int> solutionSet;
+		bool hasSolution;
+		void solve(int s,int idx)
+		{
+			if(s>sum)
+			return;
+			if(s==sum)
+			{
+				hasSolution=true;
+				displaySolutionSet();
+				return;
+				
+			}
+			for(int i=idx;i<numberOfElements;i++)
+			{
+				solutionSet.push(set[i]);
+				solve(s+set[i],i+1);
+				solutionSet.pop();
+			}
+		}
+		void displaySolutionSet()
+		{
+			stack<int> temp;
+			while(!solutionSet.empty())
+			{
+				cout<<solutionSet.top()<<" ";
+				temp.push(solutionSet.top());
+				solutionSet.pop();
+			}
+			cout<< '\n';
+			while(!temp.empty())
+			{
+				solutionSet.push(temp.top());
+				temp.pop();
+				
+			}
+		}
+    };
+    int main()
+    {
+	Subset ss;
+	ss.solve(0,0);
+	if(ss.hasSolution==false)
+	cout<<"no solution";
+	return 0;
+    }
+   OUTPUT:
+   ![image](https://user-images.githubusercontent.com/97939356/165039565-64423eb2-5b27-4c02-8ae6-a0af829cec0c.png)
+
+	11)program 6: Write C++ program for implementing the max Heap and min heap  Sort technique.
+			 #include <iostream>
+			 using namespace std;
+			void MaxHeapify (int *a, int m, int n) 
+			{
+			int j, t;
+			t = a[m];
+			j = 2 * m;
+			while (j <= n) {
+			   if (j < n && a[j+1] > a[j])
+			     j = j + 1;
+			  if (t > a[j])
+			     break;
+			  else if (t <= a[j]) {
+			     a[j / 2] = a[j];
+			     j = 2 * j;
+			  }
+			}
+			a[j/2] = t;
+			return;
+			}
+			void MinHeapify (int *a,int i, int n)
+			{
+			 int j, temp;
+			temp = a[i];
+			j = 2*i;
+			while (j <= n)
+			{
+			  if (j < n && a[j+1] < a[j])
+			  j = j+1;
+			  if (temp < a[j])
+					break;
+			else if (temp >= a[j])
+			{
+			    a[j/2] = a[j];
+			    j = 2*j;
+			} 
+			}
+			a[j/2] = temp;
+			return;
+			}
+			
+			/*void HeapSort(int a[], int n)
+			 {
+			int i, temp;
+			for (i = n; i >= 2; i--)
+			{
+				temp = a[i];
+				a[i] = a[1];
+				a[1] = temp;
+				MaxHeapify(a, 1, i - 1);
+			}
+			} */
+			
+			void build_maxheap(int *a,int n) {
+			 int k;
+			 for(k = n/2; k >= 1; k--) {
+			  MaxHeapify(a,k,n);
+			  }
+			}
+			void Build_MinHeap(int *a, int n)
+			{
+			int i;
+			for(i = n/2; i >= 1; i--)
+			{
+			
+				MinHeapify(a, i, n);
+			}
+			
+			}
+			
+			int main()
+			{
+			    int n, i,arr[100];
+			cout<<"\nEnter the number of data element to be sorted: ";
+			cin>>n;
+			//n++;
+			for(i=1;i<=n;i++)
+			 {
+			 cout<<"Enter element"<<i<<":";
+			 cin>>arr[i];
+			 }
+			 
+			 
+			Build_MinHeap(arr, n);
+			cout<<"\nMin heap Sorted Data \n";//correct
+			for (i = 1; i <= n; i++)
+			{
+			
+				cout<<" "<<arr[i];
+			}
+			
+			  build_maxheap(arr,n-1);
+			  cout<<"\nMax Heap\n";
+			 for (i = 1; i <= n; i++) 
+			 {
+			  cout<<arr[i]<<endl;
+			 }
+			
+			}
+			OUTPUT:
+![image](https://user-images.githubusercontent.com/97939356/165041929-171b071a-690a-4a5d-8c79-a6694bd6e7c3.png)
+
+	
 
 
   
