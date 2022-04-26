@@ -2375,7 +2375,7 @@ output:
    OUTPUT:
    ![image](https://user-images.githubusercontent.com/97939356/165039565-64423eb2-5b27-4c02-8ae6-a0af829cec0c.png)
 
-	11)program 6: Write C++ program for implementing the max Heap and min heap  Sort technique.
+	11)program 6: Write C++ program for implementing the max Heap and min heap technique.
 			 #include <iostream>
 			 using namespace std;
 			void MaxHeapify (int *a, int m, int n) 
@@ -2478,7 +2478,536 @@ output:
 			OUTPUT:
 ![image](https://user-images.githubusercontent.com/97939356/165041929-171b071a-690a-4a5d-8c79-a6694bd6e7c3.png)
 
-	
+	program)min max with sort
+		 #include <iostream>
+			 using namespace std;
+			void MaxHeapify (int *a, int m, int n) 
+			{
+			int j, t;
+			t = a[m];
+			j = 2 * m;
+			while (j <= n) {
+			   if (j < n && a[j+1] > a[j])
+			     j = j + 1;
+			  if (t > a[j])
+			     break;
+			  else if (t <= a[j]) {
+			     a[j / 2] = a[j];
+			     j = 2 * j;
+			  }
+			}
+			a[j/2] = t;
+			return;
+			}
+			void MinHeapify (int *a,int i, int n)
+			{
+			 int j, temp;
+			temp = a[i];
+			j = 2*i;
+			while (j <= n)
+			{
+			  if (j < n && a[j+1] < a[j])
+			  j = j+1;
+			  if (temp < a[j])
+					break;
+			else if (temp >= a[j])
+			{
+			    a[j/2] = a[j];
+			    j = 2*j;
+			} 
+			}
+			a[j/2] = temp;
+			return;
+			}
+			
+			void HeapSort(int a[], int n)
+			 {
+			int i, temp;
+			for (i = n; i >= 2; i--)
+			{
+				temp = a[i];
+				a[i] = a[1];
+				a[1] = temp;
+				MaxHeapify(a, 1, i - 1);
+			}
+			} 
+			
+			void build_maxheap(int *a,int n) {
+			 int k;
+			 for(k = n/2; k >= 1; k--) {
+			  MaxHeapify(a,k,n);
+			  }
+			}
+			void Build_MinHeap(int *a, int n)
+			{
+			int i;
+			for(i = n/2; i >= 1; i--)
+			{
+			
+				MinHeapify(a, i, n);
+			}
+			
+			}
+			
+			int main()
+			{
+			    int n, i,arr[100];
+			cout<<"\nEnter the number of data element to be sorted: ";
+			cin>>n;
+			//n++;
+			for(i=1;i<=n;i++)
+			 {
+			 cout<<"Enter element"<<i<<":";
+			 cin>>arr[i];
+			 }
+			 
+			 
+			Build_MinHeap(arr, n);
+			cout<<"\nMin heap Sorted Data \n";//correct
+			for (i = 1; i <= n; i++)
+			{
+			
+				cout<<" "<<arr[i];
+			}
+			
+			  build_maxheap(arr,n-1);
+			  cout<<"\nMax Heap\n";
+			 for (i = 1; i <= n; i++) 
+			 {
+			  cout<<arr[i]<<endl;
+			 }
+			
+			}
+![image](https://user-images.githubusercontent.com/97939356/165230524-97942676-f1b5-4fd2-bdf8-04b6f01e4c75.png)
+
+
+	program 4:	 Write a C++ program to implement BST to support the following operations
+     Assume no duplicate elements while constructing the BST
+     1.Given a key perform a search in the BST, if the key is found then display “key found”
+     2.Insert an element into a BST
+     3.Delete an element from a BST
+     Display the tree using Inorder,Preorder and Postorder traversal methods
+     # include <iostream> 
+		# include <cstdlib> 
+		using namespace std; 
+		struct node 
+		{ 
+		 int info; 
+		 struct node *left; 
+		 struct node *right; 
+		}*root; 
+		class BST 
+		{ 
+		 public: 
+		 void find(int, node **, node **); 
+		 void insert(node *, node *); 
+		 void del(int); 
+		 void case_a(node *,node *); 
+		 void case_b(node *,node *); 
+		 void case_c(node *,node *); 
+		 void preorder(node *); 
+		 void inorder(node *); 
+		 void postorder(node *); 
+		 void display(node *, int); 
+		 BST() 
+		 { 
+		 root = NULL; 
+		 } 
+		}; 
+		int main() 
+		{ 
+		 int choice, num; 
+		 BST bst; 
+		 node *temp; 
+		 while (1) 
+		 { 
+		 cout<<"-----------------"<<endl; 
+		 cout<<"Operations on BST"<<endl; 
+		 cout<<"-----------------"<<endl; 
+		 cout<<"1.Insert Element "<<endl; 
+		 cout<<"2.Delete Element "<<endl; 
+		 cout<<"3.Inorder Traversal"<<endl; 
+		 cout<<"4.Preorder Traversal"<<endl; 
+		 cout<<"5.Postorder Traversal"<<endl; 
+		 cout<<"6.Display"<<endl; 
+		 cout<<"7.Quit"<<endl; 
+		 cout<<"Enter your choice : "; 
+		 cin>>choice; 
+		 switch(choice) 
+		 { 
+		 case 1: 
+		 temp = new node; 
+		 cout<<"Enter the number to be inserted : "; 
+		 cin>>temp->info; 
+		 bst.insert(root, temp); 
+		 break; 
+		 case 2: 
+		 if (root == NULL) 
+		 { 
+		 cout<<"Tree is empty, nothing to delete"<<endl; 
+		 continue; 
+		 } 
+		 cout<<"Enter the number to be deleted : "; 
+		 cin>>num; 
+		 bst.del(num); 
+		 break; 
+		 case 3: 
+		 cout<<"Inorder Traversal of BST:"<<endl; 
+		 bst.inorder(root); 
+		 cout<<endl; 
+		 break; 
+		 case 4: 
+		 cout<<"Preorder Traversal of BST:"<<endl; 
+		 bst.preorder(root); 
+		 cout<<endl; 
+		 break; 
+		 case 5: 
+		 cout<<"Postorder Traversal of BST:"<<endl; 
+		 bst.postorder(root); 
+		 cout<<endl; 
+		 break; 
+		 case 6: 
+		 cout<<"Display BST:"<<endl; 
+		 bst.display(root,1); 
+		 cout<<endl; 
+		 break; 
+		 case 7: 
+		 exit(1); 
+		 default: 
+		 cout<<"Wrong choice"<<endl; 
+		 } 
+		 } 
+		} 
+		void BST::find(int item, node **par, node **loc) 
+		{ 
+		 node *ptr, *ptrsave; 
+		 if (root == NULL) 
+		 { 
+		 *loc = NULL; 
+		 *par = NULL; 
+		 return; 
+		 } 
+		 if (item == root->info) 
+		 { 
+		 *loc = root; 
+		 *par = NULL; 
+		 return; 
+		 } 
+		 if (item < root->info) 
+		 ptr = root->left; 
+		 else 
+		 ptr = root->right; 
+		 ptrsave = root; 
+		 while (ptr != NULL) 
+		 { 
+		 if (item == ptr->info) 
+		 { 
+		 *loc = ptr; 
+		 *par = ptrsave; 
+		 return; 
+		 } 
+		 ptrsave = ptr; 
+		 if (item < ptr->info) 
+		 ptr = ptr->left; 
+		 else 
+		 ptr = ptr->right; 
+		 } 
+		 *loc = NULL; 
+		 *par = ptrsave; 
+		} 
+		
+		void BST::insert(node *tree, node *newnode) 
+		{ 
+		 if (root == NULL) 
+		 { 
+		 root = new node; 
+		 root->info = newnode->info; 
+		 root->left = NULL; 
+		 root->right = NULL; 
+		 cout<<"Root Node is Added"<<endl; 
+		 return; 
+		 } 
+		 if (tree->info == newnode->info) 
+		 { 
+		 cout<<"Element already in the tree"<<endl; 
+		 return; 
+		 } 
+		 if (tree->info > newnode->info) 
+		 { 
+		 if (tree->left != NULL) 
+		 { 
+		 insert(tree->left, newnode); 
+		 } 
+		 else 
+		 { 
+		 tree->left = newnode; 
+		 (tree->left)->left = NULL; 
+		 (tree->left)->right = NULL; 
+		 cout<<"Node Added To Left"<<endl; 
+		 return; 
+		 } 
+		 } 
+		 else 
+		 { 
+		 if (tree->right != NULL) 
+		 { 
+		 insert(tree->right, newnode); 
+		 } 
+		 else 
+		 { 
+		 tree->right = newnode; 
+		 (tree->right)->left = NULL; 
+		 (tree->right)->right = NULL; 
+		 cout<<"Node Added To Right"<<endl; 
+		 return; 
+		 } 
+		 } 
+		} 
+		
+		void BST::del(int item) 
+		{ 
+		 node *parent, *location; 
+		 if (root == NULL) 
+		 { 
+		 cout<<"Tree empty"<<endl; 
+		 return; 
+		 } 
+		 find(item, &parent, &location); 
+		 if (location == NULL) 
+		 { 
+		 cout<<"Item not present in tree"<<endl; 
+		 return; 
+		 } 
+		 if (location->left == NULL && location->right == NULL) 
+		 case_a(parent, location); 
+		 if (location->left != NULL && location->right == NULL) 
+		 case_b(parent, location); 
+		 if (location->left == NULL && location->right != NULL) 
+		 case_b(parent, location); 
+		 if (location->left != NULL && location->right != NULL) 
+		 case_c(parent, location); 
+		 free(location); 
+		} 
+		 
+		
+		void BST::case_a(node *par, node *loc ) 
+		{ 
+		 if (par == NULL) 
+		 { 
+		 root = NULL; 
+		 } 
+		 else 
+		 { 
+		 if (loc == par->left) 
+		 par->left = NULL; 
+		 else 
+		 par->right = NULL; 
+		 } 
+		} 
+		 
+		
+		void BST::case_b(node *par, node *loc) 
+		{ 
+		 node *child; 
+		 if (loc->left != NULL) 
+		 child = loc->left; 
+		 else 
+		 child = loc->right; 
+		 if (par == NULL) 
+		 { 
+		 root = child; 
+		 } 
+		 else 
+		 { 
+		 if (loc == par->left) 
+		 par->left = child; 
+		 else 
+		 par->right = child; 
+		 } 
+		} 
+		 
+		
+		void BST::case_c(node *par, node *loc) 
+		{ 
+		 node *ptr, *ptrsave, *suc, *parsuc; 
+		 ptrsave = loc; 
+		 ptr = loc->right; 
+		 while (ptr->left != NULL) 
+		 { 
+		 ptrsave = ptr; 
+		 ptr = ptr->left; 
+		 } 
+		 suc = ptr; 
+		 parsuc = ptrsave; 
+		 if (suc->left == NULL && suc->right == NULL) 
+		 case_a(parsuc, suc); 
+		 else 
+		 case_b(parsuc, suc); 
+		 if (par == NULL) 
+		 { 
+		 root = suc; 
+		 } 
+		 else 
+		 { 
+		 if (loc == par->left) 
+		 par->left = suc; 
+		 else 
+		 par->right = suc; 
+		 } 
+		 suc->left = loc->left; 
+		 suc->right = loc->right; 
+		} 
+		 
+		 
+		void BST::preorder(node *ptr) 
+		{ 
+		 if (root == NULL) 
+		 { 
+		 cout<<"Tree is empty"<<endl; 
+		 return; 
+		 } 
+		 if (ptr != NULL) 
+		 { 
+		 cout<<ptr->info<<" "; 
+		 preorder(ptr->left); 
+		 preorder(ptr->right); 
+		 } 
+		} 
+		
+		void BST::inorder(node *ptr) 
+		{ 
+		 if (root == NULL) 
+		 { 
+		 cout<<"Tree is empty"<<endl; 
+		 return; 
+		 } 
+		 if (ptr != NULL) 
+		 { 
+		 inorder(ptr->left); 
+		 cout<<ptr->info<<" "; 
+		 inorder(ptr->right); 
+		 } 
+		} 
+		 
+		void BST::postorder(node *ptr) 
+		{ 
+		 if (root == NULL) 
+		 { 
+		 cout<<"Tree is empty"<<endl; 
+		 return; 
+		 } 
+		 if (ptr != NULL) 
+		 { 
+		 postorder(ptr->left); 
+		 postorder(ptr->right); 
+		 cout<<ptr->info<<" "; 
+		 } 
+		} 
+		 
+		void BST::display(node *ptr, int level) 
+		{ 
+		 int i; 
+		 if (ptr != NULL) 
+		 { 
+		 display(ptr->right, level+1); 
+		 cout<<endl; 
+		 if (ptr == root) 
+		 cout<<"Root->: "; 
+		 else 
+		 { 
+		 for (i = 0;i < level;i++) 
+		 cout<<" "; 
+		 } 
+		 cout<<ptr->info; 
+		 display(ptr->left, level+1); 
+		 } 
+		}	
+![image](https://user-images.githubusercontent.com/97939356/165227921-3cb788a9-ac0a-4893-981c-5404899c0cb4.png)
+![image](https://user-images.githubusercontent.com/97939356/165227968-a88d7100-0187-4c76-941c-c8f569320a40.png)
+![image](https://user-images.githubusercontent.com/97939356/165228035-29eb67d5-7e41-4634-8d3a-b9a7f14724b5.png)
+
+  	 program)
+  	 //program 2: Write a C++ program to split the linked list into two halves such that the element ‘e’ should be the first element of second list.
+		#include<iostream>
+		using namespace std;
+		struct Node{
+		int value;
+		struct Node *next;
+		};
+		struct Node* head = NULL;
+		struct Node* sHead = NULL;
+		struct Node* temp = NULL;
+		void insert(int new_data){
+		struct Node* new_node = new Node(); //(struct Node*)malloc(sizeof(struct Node));
+		new_node->value = new_data;
+		new_node->next = head;
+		head = new_node;
+		}
+		int n;
+		int ele;
+		int splitIndex;
+		int main(){
+		int i;
+		cout<<"Enter number of elements you want in the list\t";
+		cin>>n;
+		cout<<"Enter elements :" <<endl;
+		for(i=0;i<n;i++){
+		cin>>ele;
+		insert(ele);
+		}
+		cout<<"\nList of elements : "<<endl;
+		Node *t;
+		t = head;
+		while(t != NULL){
+		cout<<t->value<<"\t";
+		t = t->next;
+		}
+		cout<<"\n\nEnter the position you want the list to split ";
+		cin>>splitIndex;
+		while(splitIndex < 0 || splitIndex > n-1){
+		cout<<"Invalid position. Try again."<<endl;
+		cin>>splitIndex;
+		}
+		temp = head;
+		for(i=0;i<=splitIndex;i++){
+		if(i==splitIndex-1){
+		Node *tN;
+		tN = temp->next;
+		sHead = tN;
+		temp->next = NULL;
+		break;
+		}
+		temp = temp->next;
+		}
+		temp = head;
+		if(temp == NULL){
+		cout<<"\nFirst list is empty"<<endl;
+		}else{
+		cout<<"\n\nFirst list element "<<endl;
+		while(temp != NULL){
+		cout<<temp->value<<"\t";
+		temp = temp->next;
+		}
+		}
+		temp = sHead;
+		if(temp == NULL){
+		cout<<"\nSecond list is empty"<<endl;
+		}else{
+		cout<<"\n\nSecond list elements "<<endl;
+		while(temp != NULL){
+		cout<<temp->value<<"\t";
+		temp = temp->next;
+		}
+		}
+		return 0;
+		}
+   ![image](https://user-images.githubusercontent.com/97939356/165229372-ecbbf544-e46e-4892-9e5a-83e7f3aeaac0.png)
+   
+   
+
+
+
+
 
 
   
